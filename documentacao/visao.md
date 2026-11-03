@@ -21,4 +21,4 @@ O frontend será feito em React com Vite. O backend será uma API REST em Java c
 ## Objetivo do trabalho
 Demonstrar a comunicação entre frontend, backend e banco de dados, usando as camadas Controller, Service, Repository e Model.
 
-Não teremos login nem metas nutricionais complexas. A hidratação terá um acompanhamento simples em ml, com uma referência inicial de 2.000 ml. A IA será usada apenas para sugerir uma estimativa de calorias, que a pessoa pode corrigir antes de salvar. A ideia é manter o projeto pequeno e fácil de apresentar.
+Não teremos login nem metas nutricionais complexas. A hidratação terá um acompanhamento simples em ml, com uma referência inicial de 3.000 ml. A IA será usada apenas para sugerir uma estimativa de calorias, que a pessoa pode corrigir antes de salvar. A ideia é manter o projeto pequeno e fácil de apresentar.
