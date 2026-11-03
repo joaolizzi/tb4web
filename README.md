@@ -46,6 +46,7 @@ Esse script executa os testes do Spring Boot (`mvn test`) e gera a versão de pr
 - Excluir uma refeição
 - Ver a soma de calorias do dia
 - Consultar o histórico dos dias com refeições, seus totais e a média diária
+- Registrar copos ou garrafas de água em ml, acompanhar o total do dia e excluir registros
 - Pedir ao Gemini uma estimativa opcional de calorias pela descrição da refeição, em um painel separado
 
 ## Habilitar a estimativa com IA (opcional)
@@ -78,12 +79,22 @@ Se você já havia configurado `GEMINI_MODEL` no terminal para o modelo antigo, 
 | DELETE | `/api/refeicoes/{id}` | Exclui refeição |
 | GET | `/api/refeicoes/total?data=2026-11-03` | Retorna o total do dia |
 | GET | `/api/refeicoes/historico` | Retorna os dias com registros e a média diária |
+| GET | `/api/agua?data=2026-11-03` | Lista os registros de água do dia |
+| POST | `/api/agua` | Registra uma quantidade de água em ml |
+| DELETE | `/api/agua/{id}` | Exclui um registro de água |
+| GET | `/api/agua/total?data=2026-11-03` | Retorna o total de água do dia em ml |
 | POST | `/api/ia/estimar` | Retorna estimativa de calorias |
 
-Exemplo do corpo do POST:
+Exemplo do corpo do POST de refeição:
 
 ```json
 {"nome":"Almoço","calorias":550,"data":"2026-11-03"}
+```
+
+Exemplo do corpo do POST de água:
+
+```json
+{"quantidadeMl":250,"data":"2026-11-03"}
 ```
 
 Exemplo do corpo da estimativa: `{"descricao":"150g de arroz, 100g de feijão e 150g de frango"}`. O retorno é `{"calorias":580}` (número ilustrativo; o valor real depende da IA).
