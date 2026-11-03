@@ -28,7 +28,7 @@ tb4web/
 ## Camadas
 - **Model:** entidade Refeicao, com id, nome, calorias e data.
 - **Repository:** acesso ao banco de dados com Spring Data JPA.
-- **Service:** cadastro, consulta, exclusão e soma de calorias.
+- **Service:** cadastro, consulta, exclusão, soma de calorias e agrupamento do histórico por data.
 - **Controller:** endpoints REST chamados pelo React.
 - **DTO:** valida os dados recebidos no cadastro.
 - **EstimativaService:** consulta a API Gemini através de uma requisição HTTP, usando a chave de ambiente do backend.
@@ -40,9 +40,12 @@ tb4web/
 | POST | /api/refeicoes | Cadastrar refeição |
 | DELETE | /api/refeicoes/{id} | Excluir refeição |
 | GET | /api/refeicoes/total?data=AAAA-MM-DD | Somar calorias |
+| GET | /api/refeicoes/historico | Histórico de dias e média de calorias |
 | POST | /api/ia/estimar | Estimar calorias a partir de uma descrição |
 
 O banco H2 é salvo em arquivo na pasta `backend/dados`. O Vite encaminha as requisições `/api` para a porta 8080 durante o desenvolvimento.
+
+A média diária é calculada dividindo a soma das calorias de todos os dias com registros pela quantidade desses dias. Dias sem refeições não entram na média.
 
 A chave `GEMINI_API_KEY` não fica no código e nunca é enviada ao navegador. A descrição vai para o serviço externo Gemini somente quando a pessoa pede uma estimativa. A estimativa pode falhar e não é uma medição nutricional exata.
 
