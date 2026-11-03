@@ -1,6 +1,7 @@
 package br.edu.ifpr.calorias.service;
 
 import br.edu.ifpr.calorias.dto.RefeicaoDados;
+import br.edu.ifpr.calorias.exception.RecursoNaoEncontradoException;
 import br.edu.ifpr.calorias.model.Refeicao;
 import br.edu.ifpr.calorias.model.Usuario;
 import br.edu.ifpr.calorias.repository.RefeicaoRepository;
@@ -50,7 +51,7 @@ public class RefeicaoService {
 
     private Refeicao buscarDoUsuario(Long usuarioId, Long refeicaoId) {
         return refeicoes.findByIdAndUsuarioId(refeicaoId, usuarioId)
-            .orElseThrow(() -> new IllegalArgumentException("Refeição não encontrada."));
+            .orElseThrow(() -> new RecursoNaoEncontradoException("Refeição não encontrada."));
     }
 
     private void validar(RefeicaoDados dados) {
