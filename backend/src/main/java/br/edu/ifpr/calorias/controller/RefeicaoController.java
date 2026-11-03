@@ -1,6 +1,7 @@
 package br.edu.ifpr.calorias.controller;
 
 import br.edu.ifpr.calorias.dto.RefeicaoDados;
+import br.edu.ifpr.calorias.dto.HistoricoResposta;
 import br.edu.ifpr.calorias.model.Refeicao;
 import br.edu.ifpr.calorias.service.RefeicaoService;
 import jakarta.validation.Valid;
@@ -37,6 +38,11 @@ public class RefeicaoController {
         return servico.excluir(id)
             ? ResponseEntity.noContent().build()
             : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/historico")
+    public HistoricoResposta historico() {
+        return servico.historico();
     }
 
     @GetMapping("/total")
