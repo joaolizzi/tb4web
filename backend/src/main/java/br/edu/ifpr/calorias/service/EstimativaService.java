@@ -26,7 +26,7 @@ public class EstimativaService {
 
     public EstimativaService(ObjectMapper json,
         @Value("${GEMINI_API_KEY:}") String chave,
-        @Value("${GEMINI_MODEL:gemini-3.5-flash-lite}") String modelo) {
+        @Value("${GEMINI_MODEL:gemini-3.8-flash}") String modelo) {
         this.json = json;
         this.chave = chave;
         this.modelo = modelo;
