@@ -197,7 +197,7 @@ export default function App() {
 
   const total = refeicoes.reduce((soma, refeicao) => soma + refeicao.calorias, 0)
   const totalAgua = consumosAgua.reduce((soma, registro) => soma + registro.quantidadeMl, 0)
-  const progressoAgua = Math.min(100, totalAgua / 2000 * 100)
+  const progressoAgua = Math.min(100, totalAgua / 3000 * 100)
   const maiorDia = Math.max(1, ...historico.dias.map(dia => dia.totalCalorias))
 
   return (
@@ -367,7 +367,7 @@ export default function App() {
                 <p>{dataFormatada(data)}</p>
               </div>
               <div className="agua-meta">
-                <div className="agua-meta-texto"><span>Meta do app</span><strong>{numero(2000)} ml</strong></div>
+                <div className="agua-meta-texto"><span>Meta do app</span><strong>{numero(3000)} ml</strong></div>
                 <div className="agua-progresso"><span style={{ width: progressoAgua + '%' }} /></div>
                 <small>{Math.round(progressoAgua)}% da meta</small>
               </div>
@@ -407,7 +407,7 @@ export default function App() {
                 ))}
               </ul>
             )}
-            <p className="agua-nota">A meta de 2.000 ml é apenas uma referência inicial do aplicativo.</p>
+            <p className="agua-nota">A meta de 3.000 ml é apenas uma referência inicial do aplicativo.</p>
           </div>
         </section>
 
