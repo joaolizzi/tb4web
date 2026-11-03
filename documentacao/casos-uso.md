@@ -34,3 +34,11 @@
 **Alternativa:** se a API estiver indisponível ou sem chave, é possível digitar as calorias manualmente.
 
 O valor gerado por IA é aproximado e depende da descrição enviada.
+
+## UC05 — Consultar histórico
+1. A pessoa abre a página e visualiza os dias em que cadastrou refeições.
+2. O sistema mostra o total de calorias e a quantidade de refeições de cada dia.
+3. O sistema calcula a média dos dias com registros.
+4. Ao clicar em uma data do histórico, a lista de refeições daquele dia aparece.
+
+**Alternativa:** sem refeições cadastradas, a média é zero e o histórico mostra uma mensagem informativa.
