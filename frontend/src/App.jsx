@@ -12,6 +12,8 @@ export default function App() {
   const [calorias, setCalorias] = useState('')
   const [erro, setErro] = useState('')
   const [salvando, setSalvando] = useState(false)
+  const [estimando, setEstimando] = useState(false)
+  const [avisoIA, setAvisoIA] = useState('')
 
   async function carregar() {
     try {
@@ -26,6 +28,34 @@ export default function App() {
 
   useEffect(() => { carregar() }, [data])
 
+  async function estimarCalorias() {
+    if (!nome.trim()) {
+      setErro('Descreva a refeição antes de usar a IA.')
+      return
+    }
+    setEstimando(true)
+    setErro('')
+    setAvisoIA('')
+    try {
+      const resposta = await fetch('/api/ia/estimar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ descricao: nome.trim() })
+      })
+      if (!resposta.ok) {
+        if (resposta.status === 503) throw new Error('Configure a chave do Gemini no backend para usar a IA.')
+        throw new Error('A estimativa não funcionou. Tente novamente ou informe as calorias manualmente.')
+      }
+      const dados = await resposta.json()
+      setCalorias(String(dados.calorias))
+      setAvisoIA('Estimativa aproximada da IA. Confira o valor antes de salvar.')
+    } catch (e) {
+      setErro(e.message)
+    } finally {
+      setEstimando(false)
+    }
+  }
+
   async function adicionar(evento) {
     evento.preventDefault()
     if (!nome.trim() || calorias === '' || Number(calorias) < 0) return
@@ -39,6 +69,7 @@ export default function App() {
       if (!resposta.ok) throw new Error('Não foi possível salvar a refeição.')
       setNome('')
       setCalorias('')
+      setAvisoIA('')
       await carregar()
     } catch (e) {
       setErro(e.message)
@@ -79,6 +110,13 @@ export default function App() {
           <label>Calorias<input required min="0" step="1" type="number" placeholder="Ex.: 550" value={calorias} onChange={e => setCalorias(e.target.value)} /></label>
           <button disabled={salvando} type="submit">{salvando ? 'Salvando...' : 'Adicionar'}</button>
         </form>
+        <div className="ia-ajuda">
+          <button type="button" className="botao-ia" disabled={estimando || !nome.trim()} onClick={estimarCalorias}>
+            {estimando ? 'Estimando...' : '✨ Estimar com IA'}
+          </button>
+          <span>Descreva o alimento e a quantidade no nome da refeição para melhorar a estimativa.</span>
+        </div>
+        {avisoIA && <p className="aviso-ia">{avisoIA}</p>}
       </section>
 
       <section className="painel">
