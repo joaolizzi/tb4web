@@ -27,6 +27,11 @@ export default function App() {
   const [aviso, setAviso] = useState('')
   const [salvando, setSalvando] = useState(false)
   const [estimando, setEstimando] = useState(false)
+  const [consumosAgua, setConsumosAgua] = useState([])
+  const [quantidadeAgua, setQuantidadeAgua] = useState('250')
+  const [salvandoAgua, setSalvandoAgua] = useState(false)
+  const [erroAgua, setErroAgua] = useState('')
+  const [avisoAgua, setAvisoAgua] = useState('')
 
   async function carregarDia() {
     try {
@@ -49,8 +54,20 @@ export default function App() {
     }
   }
 
+  async function carregarAgua() {
+    try {
+      const resposta = await fetch('/api/agua?data=' + encodeURIComponent(data))
+      if (!resposta.ok) throw new Error('Não foi possível carregar os registros de água.')
+      setConsumosAgua(await resposta.json())
+      setErroAgua('')
+    } catch (e) {
+      setErroAgua(e.message)
+    }
+  }
+
   useEffect(() => { carregarDia() }, [data])
   useEffect(() => { carregarHistorico() }, [])
+  useEffect(() => { carregarAgua() }, [data])
 
   async function adicionar(evento) {
     evento.preventDefault()
@@ -87,6 +104,50 @@ export default function App() {
       await Promise.all([carregarDia(), carregarHistorico()])
     } catch (e) {
       setErro(e.message)
+    }
+  }
+
+  async function registrarAgua(quantidade) {
+    const ml = Number(quantidade)
+    if (!Number.isInteger(ml) || ml <= 0 || ml > 10000) {
+      setErroAgua('Informe uma quantidade de água entre 1 e 10.000 ml.')
+      return
+    }
+    setSalvandoAgua(true)
+    setErroAgua('')
+    setAvisoAgua('')
+    try {
+      const resposta = await fetch('/api/agua', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quantidadeMl: ml, data })
+      })
+      if (!resposta.ok) throw new Error('Não foi possível registrar a água.')
+      setQuantidadeAgua('250')
+      setAvisoAgua(`${numero(ml)} ml registrados com sucesso.`)
+      await carregarAgua()
+    } catch (e) {
+      setErroAgua(e.message)
+    } finally {
+      setSalvandoAgua(false)
+    }
+  }
+
+  async function adicionarAgua(evento) {
+    evento.preventDefault()
+    await registrarAgua(quantidadeAgua)
+  }
+
+  async function excluirAgua(id) {
+    setErroAgua('')
+    setAvisoAgua('')
+    try {
+      const resposta = await fetch('/api/agua/' + id, { method: 'DELETE' })
+      if (!resposta.ok) throw new Error('Não foi possível excluir o registro de água.')
+      setAvisoAgua('Registro de água excluído.')
+      await carregarAgua()
+    } catch (e) {
+      setErroAgua(e.message)
     }
   }
 
@@ -135,6 +196,8 @@ export default function App() {
   }
 
   const total = refeicoes.reduce((soma, refeicao) => soma + refeicao.calorias, 0)
+  const totalAgua = consumosAgua.reduce((soma, registro) => soma + registro.quantidadeMl, 0)
+  const progressoAgua = Math.min(100, totalAgua / 2000 * 100)
   const maiorDia = Math.max(1, ...historico.dias.map(dia => dia.totalCalorias))
 
   return (
@@ -285,6 +348,66 @@ export default function App() {
                 ))}
               </div>
             )}
+          </div>
+
+          <div className="painel hidratacao-panel" id="hidratacao">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">ACOMPANHAMENTO DIÁRIO</p>
+                <h2>Hidratação</h2>
+                <p>Registre cada copo ou garrafa de água consumida.</p>
+              </div>
+              <span className="section-symbol agua-symbol">滴</span>
+            </div>
+
+            <div className="agua-resumo">
+              <div>
+                <span className="agua-total-label">Total consumido</span>
+                <strong className="agua-total">{numero(totalAgua)} <small>ml</small></strong>
+                <p>{dataFormatada(data)}</p>
+              </div>
+              <div className="agua-meta">
+                <div className="agua-meta-texto"><span>Meta do app</span><strong>{numero(2000)} ml</strong></div>
+                <div className="agua-progresso"><span style={{ width: progressoAgua + '%' }} /></div>
+                <small>{Math.round(progressoAgua)}% da meta</small>
+              </div>
+            </div>
+
+            <div className="agua-controles">
+              <div className="agua-atalhos">
+                <span>Adicionar rapidamente</span>
+                <button type="button" disabled={salvandoAgua} onClick={() => registrarAgua(250)}>＋ 250 ml</button>
+                <button type="button" disabled={salvandoAgua} onClick={() => registrarAgua(500)}>＋ 500 ml</button>
+              </div>
+              <form className="agua-form" onSubmit={adicionarAgua}>
+                <label htmlFor="quantidade-agua">Outra quantidade</label>
+                <div>
+                  <input id="quantidade-agua" type="number" min="1" max="10000" step="1"
+                    value={quantidadeAgua} onChange={e => setQuantidadeAgua(e.target.value)} />
+                  <span>ml</span>
+                  <button type="submit" disabled={salvandoAgua}>{salvandoAgua ? 'Salvando...' : 'Registrar'}</button>
+                </div>
+              </form>
+            </div>
+
+            {erroAgua && <p className="mensagem erro" role="alert">{erroAgua}</p>}
+            {avisoAgua && <p className="mensagem sucesso" role="status">{avisoAgua}</p>}
+
+            {consumosAgua.length === 0 ? (
+              <div className="estado-vazio agua-vazio"><span>滴</span><strong>Nenhum consumo registrado</strong>
+                <p>Use os atalhos ou informe a quantidade em ml.</p></div>
+            ) : (
+              <ul className="lista-agua">
+                {consumosAgua.map(registro => (
+                  <li key={registro.id}>
+                    <span><b>💧</b> {numero(registro.quantidadeMl)} ml</span>
+                    <button className="botao-excluir" type="button" onClick={() => excluirAgua(registro.id)}
+                      aria-label={'Excluir registro de ' + registro.quantidadeMl + ' ml'}>Excluir</button>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p className="agua-nota">A meta de 2.000 ml é apenas uma referência inicial do aplicativo.</p>
           </div>
         </section>
 
