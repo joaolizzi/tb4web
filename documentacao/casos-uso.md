@@ -23,3 +23,14 @@
 3. A lista e o total são atualizados.
 
 **Alternativa:** se o registro não existir mais, a API retorna 404.
+
+## UC04 — Estimar calorias com IA
+1. A pessoa digita uma descrição da refeição, de preferência com quantidades.
+2. Clica em **Estimar com IA**.
+3. O React envia a descrição ao Spring Boot.
+4. O backend consulta o Gemini e devolve uma estimativa de calorias.
+5. O valor aparece no formulário e pode ser corrigido antes do cadastro.
+
+**Alternativa:** se a API estiver indisponível ou sem chave, é possível digitar as calorias manualmente.
+
+O valor gerado por IA é aproximado e depende da descrição enviada.
