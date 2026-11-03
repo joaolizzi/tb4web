@@ -140,3 +140,45 @@ footer span{padding:0 7px;color:#34d399}
   .historico-meta strong{font-size:11px}
   .historico-total{font-size:12px}
 }
+
+
+/* Hidratação */
+.hidratacao-panel{grid-column:1/-1}
+.agua-symbol{color:#7dd3fc;background:#122d3b}
+.agua-resumo{display:grid;grid-template-columns:minmax(180px,1fr) minmax(220px,1fr);gap:26px;align-items:center;padding:20px 22px;border:1px solid #254354;border-radius:14px;background:linear-gradient(110deg,#102630,#111d29)}
+.agua-total-label{display:block;color:#9bb6c8;font-size:12px;font-weight:650}
+.agua-total{display:block;font-size:36px;letter-spacing:-1.2px;margin-top:7px}
+.agua-total small{font-size:15px;color:#8eabbc;font-weight:550;letter-spacing:0}
+.agua-resumo>div:first-child p{color:#8198a8;font-size:12px;margin:5px 0 0}
+.agua-meta-texto{display:flex;justify-content:space-between;gap:12px;color:#a7bac9;font-size:12px;margin-bottom:10px}
+.agua-meta-texto strong{color:#d6eaf7}
+.agua-progresso{height:10px;background:#243b49;border-radius:20px;overflow:hidden}
+.agua-progresso span{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#38aee2,#69d5ed);transition:width .2s}
+.agua-meta>small{display:block;text-align:right;color:#7f9aaa;font-size:11px;margin-top:8px}
+.agua-controles{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:22px 0}
+.agua-atalhos{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.agua-atalhos>span{width:100%;color:#b8c7d7;font-size:12px;font-weight:700;margin-bottom:1px}
+.agua-atalhos button{border:1px solid #28617b;background:#102c3b;color:#a5e4fa;border-radius:10px;padding:11px 15px;font-size:13px;font-weight:750}
+.agua-atalhos button:hover:not(:disabled){background:#17435a}
+.agua-form label{display:block;color:#b8c7d7;font-size:12px;font-weight:700;margin-bottom:9px}
+.agua-form>div{display:flex;align-items:center;gap:9px}
+.agua-form input{min-width:0;flex:1}
+.agua-form>div>span{color:#8096a6;font-size:12px;margin-left:-39px;pointer-events:none}
+.agua-form button{flex:0 0 auto;border:1px solid #287a9d;background:#1c7597;color:#fff;border-radius:10px;padding:13px 17px;font-size:12px;font-weight:800}
+.agua-form button:hover:not(:disabled){background:#258db3}
+.lista-agua{list-style:none;padding:0;margin:19px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+.lista-agua li{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #293b48;background:#0e1821;border-radius:10px;padding:10px 11px}
+.lista-agua li>span{font-size:13px;font-weight:700;color:#d3e6f1}
+.lista-agua li>span b{margin-right:6px}
+.agua-vazio{margin-top:15px}
+.agua-vazio>span{color:#7dd3fc;background:#122d3b}
+.agua-nota{font-size:10px;color:#708597;margin:14px 0 0}
+@media(max-width:640px){
+  .agua-resumo{grid-template-columns:1fr;gap:19px;padding:18px}
+  .agua-total{font-size:32px}
+  .agua-controles{grid-template-columns:1fr;gap:19px}
+  .agua-form>div{flex-wrap:wrap}
+  .agua-form input{flex:1 1 100%}
+  .agua-form>div>span{position:absolute;margin-left:calc(100% - 54px);margin-top:-48px}
+  .agua-form button{width:100%}
+}
