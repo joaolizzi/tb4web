@@ -11,6 +11,7 @@ Pessoas que querem registrar sua alimentação de maneira rápida.
 - Mostra as refeições de uma data escolhida.
 - Exclui uma refeição.
 - Soma as calorias registradas no dia.
+- Mostra um histórico dos dias com refeições, seus totais e a média diária.
 - Pode estimar as calorias a partir da descrição de uma refeição usando IA (Gemini), como ajuda opcional.
 
 ## Tecnologias
