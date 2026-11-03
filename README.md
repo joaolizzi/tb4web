@@ -38,7 +38,6 @@ Na raiz do projeto, no PowerShell, execute:
 
 Esse script executa os testes do Spring Boot (`mvn test`) e gera a versão de produção do React (`npm run build`). A chamada real ao Gemini não faz parte dos testes automáticos, pois depende de uma chave e de acesso à internet.
 
-Também há um roteiro com demonstração, explicação das classes e perguntas comuns em [APRESENTACAO.md](APRESENTACAO.md).
 
 ## Funcionalidades
 
