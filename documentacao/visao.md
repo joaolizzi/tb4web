@@ -11,6 +11,7 @@ Pessoas que querem registrar sua alimentação de maneira rápida.
 - Mostra as refeições de uma data escolhida.
 - Exclui uma refeição.
 - Soma as calorias registradas no dia.
+- Pode estimar as calorias a partir da descrição de uma refeição usando IA (Gemini), como ajuda opcional.
 
 ## Tecnologias
 O frontend será feito em React com Vite. O backend será uma API REST em Java com Spring Boot. Os dados ficarão salvos em um banco H2 local.
@@ -18,4 +19,4 @@ O frontend será feito em React com Vite. O backend será uma API REST em Java c
 ## Objetivo do trabalho
 Demonstrar a comunicação entre frontend, backend e banco de dados, usando as camadas Controller, Service, Repository e Model.
 
-Não teremos login, metas, consumo de água nem inteligência artificial. A ideia é manter o projeto pequeno e fácil de apresentar.
+Não teremos login, metas nem consumo de água. A IA será usada apenas para sugerir uma estimativa de calorias, que a pessoa pode corrigir antes de salvar. A ideia é manter o projeto pequeno e fácil de apresentar.
