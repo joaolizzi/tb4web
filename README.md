@@ -33,7 +33,8 @@ Acesse `http://localhost:5173`. O Vite encaminha as chamadas `/api` para o Sprin
 - Listar as refeições de uma data
 - Excluir uma refeição
 - Ver a soma de calorias do dia
-- Pedir ao Gemini uma estimativa opcional de calorias pela descrição da refeição
+- Consultar o histórico dos dias com refeições, seus totais e a média diária
+- Pedir ao Gemini uma estimativa opcional de calorias pela descrição da refeição, em um painel separado
 
 ## Habilitar a estimativa com IA (opcional)
 
@@ -52,7 +53,9 @@ O modelo padrão é `gemini-3.5-flash-lite`. Se sua chave não tiver acesso a el
 $env:GEMINI_MODEL="gemini-3.5-flash"
 ```
 
-Sem a chave, o cadastro manual continua funcionando normalmente. A IA gera apenas uma estimativa, não salva refeições automaticamente e pode errar; confirme o valor antes de adicionar.
+Sem a chave, o cadastro manual continua funcionando normalmente. A IA gera apenas uma estimativa, não salva refeições automaticamente e pode errar; confirme o valor antes de adicionar. No painel de IA, clique em **Usar no cadastro** para preencher os campos do formulário manual.
+
+Para experimentar um modelo mais capaz, se sua chave tiver acesso a ele, configure `$env:GEMINI_MODEL="gemini-3.8-flash"` **antes de iniciar o backend**. Confira cota e preço no Google AI Studio. O modelo mais leve continua sendo o padrão.
 
 ## Endpoints
 
@@ -62,6 +65,7 @@ Sem a chave, o cadastro manual continua funcionando normalmente. A IA gera apena
 | POST | `/api/refeicoes` | Cadastra refeição |
 | DELETE | `/api/refeicoes/{id}` | Exclui refeição |
 | GET | `/api/refeicoes/total?data=2026-11-03` | Retorna o total do dia |
+| GET | `/api/refeicoes/historico` | Retorna os dias com registros e a média diária |
 | POST | `/api/ia/estimar` | Retorna estimativa de calorias |
 
 Exemplo do corpo do POST:
@@ -71,6 +75,8 @@ Exemplo do corpo do POST:
 ```
 
 Exemplo do corpo da estimativa: `{"descricao":"150g de arroz, 100g de feijão e 150g de frango"}`. O retorno é `{"calorias":580}` (número ilustrativo; o valor real depende da IA).
+
+A média do histórico considera **somente os dias com refeições registradas**, não todos os dias do calendário.
 
 O banco é criado automaticamente na pasta `backend/dados` quando a API inicia.
 
