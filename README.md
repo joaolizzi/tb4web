@@ -27,6 +27,19 @@ npm run dev
 
 Acesse `http://localhost:5173`. O Vite encaminha as chamadas `/api` para o Spring Boot em `http://localhost:8080`.
 
+
+## Conferir antes de apresentar
+
+Na raiz do projeto, no PowerShell, execute:
+
+```powershell
+.\testar.ps1
+```
+
+Esse script executa os testes do Spring Boot (`mvn test`) e gera a versão de produção do React (`npm run build`). A chamada real ao Gemini não faz parte dos testes automáticos, pois depende de uma chave e de acesso à internet.
+
+Também há um roteiro com demonstração, explicação das classes e perguntas comuns em [APRESENTACAO.md](APRESENTACAO.md).
+
 ## Funcionalidades
 
 - Cadastrar uma refeição com nome, calorias e data
