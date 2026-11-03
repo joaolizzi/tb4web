@@ -46,10 +46,10 @@ mvn spring-boot:run
 
 Execute esses comandos dentro da pasta `backend`. Não cole sua chave em arquivos versionados nem a envie a terceiros.
 
-O modelo padrão é `gemini-3.7-flash`. Se sua chave não tiver acesso a ele, você pode escolher outro modelo compatível com o endpoint de geração de conteúdo:
+O modelo padrão é `gemini-3.5-flash-lite`. Se sua chave não tiver acesso a ele, você pode escolher outro modelo disponível para seu projeto no AI Studio:
 
 ```powershell
-$env:GEMINI_MODEL="gemini-3.6-flash"
+$env:GEMINI_MODEL="gemini-3.5-flash"
 ```
 
 Sem a chave, o cadastro manual continua funcionando normalmente. A IA gera apenas uma estimativa, não salva refeições automaticamente e pode errar; confirme o valor antes de adicionar.
