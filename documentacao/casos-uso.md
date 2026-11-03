@@ -42,3 +42,11 @@ O valor gerado por IA é aproximado e depende da descrição enviada.
 4. Ao clicar em uma data do histórico, a lista de refeições daquele dia aparece.
 
 **Alternativa:** sem refeições cadastradas, a média é zero e o histórico mostra uma mensagem informativa.
+
+## UC06 — Registrar hidratação
+1. A pessoa escolhe a data que deseja consultar.
+2. Adiciona rapidamente 250 ml ou 500 ml, ou informa outra quantidade em ml.
+3. O sistema salva o registro e atualiza o total de água do dia.
+4. A pessoa pode excluir um registro feito por engano.
+
+**Alternativa:** se a quantidade for zero ou inválida, o sistema não salva o registro.
