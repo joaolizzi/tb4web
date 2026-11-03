@@ -17,6 +17,11 @@ public class ErrosApi {
         return ResponseEntity.badRequest().body(Map.of("erro", mensagem));
     }
 
+    @ExceptionHandler(RecursoNaoEncontradoException.class)
+    public ResponseEntity<Map<String, String>> naoEncontrado(RecursoNaoEncontradoException erro) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("erro", erro.getMessage()));
+    }
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> dadosInvalidos(IllegalArgumentException erro) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("erro", erro.getMessage()));
