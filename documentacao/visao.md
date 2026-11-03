@@ -1,33 +1,21 @@
-# Visão do Projeto — Calorias Diárias
+# Visão do projeto — Calorias Diárias
 
-## Problema
-O acompanhamento diário de alimentação, calorias e hidratação pode ser difícil quando os registros ficam dispersos ou dependem de cálculos manuais.
+## Ideia
+Criar um site simples para anotar as refeições do dia e saber quantas calorias foram consumidas.
 
-## Público-alvo
-Pessoas que desejam organizar a alimentação e acompanhar metas pessoais de calorias e consumo de água.
+## Para quem é
+Pessoas que querem registrar sua alimentação de maneira rápida.
 
-## Proposta de valor
-Uma aplicação web responsiva que centraliza o registro de refeições, a visualização do consumo diário e o acompanhamento de metas, com uma experiência simples e acessível.
+## O que o sistema faz
+- Cadastra uma refeição informando nome, calorias e data.
+- Mostra as refeições de uma data escolhida.
+- Exclui uma refeição.
+- Soma as calorias registradas no dia.
 
-## Funcionalidades planejadas
-- Cadastro e autenticação de usuários.
-- Definição e edição de metas de calorias e água.
-- Registro, consulta, edição e exclusão de refeições.
-- Registro de consumo de água.
-- Painel diário com totais consumidos e metas.
-- Consulta de histórico de registros.
+## Tecnologias
+O frontend será feito em React com Vite. O backend será uma API REST em Java com Spring Boot. Os dados ficarão salvos em um banco H2 local.
 
-## Tecnologias e escopo acadêmico
-- **Backend:** API REST em Java com Spring Boot, organizada em camadas.
-- **Frontend:** React com Vite, consumindo os endpoints da API.
-- **Persistência:** banco de dados relacional, a definir na etapa de arquitetura.
-- **Versionamento:** Git, com commits incrementais correspondentes ao desenvolvimento efetivo.
+## Objetivo do trabalho
+Demonstrar a comunicação entre frontend, backend e banco de dados, usando as camadas Controller, Service, Repository e Model.
 
-## Relação com o projeto original
-Este trabalho parte da ideia e da experiência de interface do projeto pessoal `calorias-diarias`. O código será avaliado e adaptado às exigências acadêmicas, especialmente a obrigatoriedade de um backend em Spring Boot. Funcionalidades do aplicativo original, como análises por IA e painel administrativo, não fazem parte do escopo mínimo inicial e poderão ser consideradas depois.
-
-## Critérios de sucesso
-1. Frontend e backend comunicam-se por API REST.
-2. Registros e metas são persistidos e recuperados corretamente.
-3. As funcionalidades implementadas correspondem à documentação.
-4. Os integrantes conseguem demonstrar e explicar as decisões técnicas e suas contribuições.
+Não teremos login, metas, consumo de água nem inteligência artificial. A ideia é manter o projeto pequeno e fácil de apresentar.
