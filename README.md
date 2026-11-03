@@ -33,6 +33,26 @@ Acesse `http://localhost:5173`. O Vite encaminha as chamadas `/api` para o Sprin
 - Listar as refeições de uma data
 - Excluir uma refeição
 - Ver a soma de calorias do dia
+- Pedir ao Gemini uma estimativa opcional de calorias pela descrição da refeição
+
+## Habilitar a estimativa com IA (opcional)
+
+Crie uma chave da API Gemini no [Google AI Studio](https://aistudio.google.com/apikey). No **PowerShell**, antes de iniciar o backend, execute:
+
+```powershell
+$env:GEMINI_API_KEY="SUA_CHAVE_AQUI"
+mvn spring-boot:run
+```
+
+Execute esses comandos dentro da pasta `backend`. Não cole sua chave em arquivos versionados nem a envie a terceiros.
+
+O modelo padrão é `gemini-3.7-flash`. Se sua chave não tiver acesso a ele, você pode escolher outro modelo compatível com o endpoint de geração de conteúdo:
+
+```powershell
+$env:GEMINI_MODEL="gemini-3.6-flash"
+```
+
+Sem a chave, o cadastro manual continua funcionando normalmente. A IA gera apenas uma estimativa, não salva refeições automaticamente e pode errar; confirme o valor antes de adicionar.
 
 ## Endpoints
 
@@ -42,12 +62,15 @@ Acesse `http://localhost:5173`. O Vite encaminha as chamadas `/api` para o Sprin
 | POST | `/api/refeicoes` | Cadastra refeição |
 | DELETE | `/api/refeicoes/{id}` | Exclui refeição |
 | GET | `/api/refeicoes/total?data=2026-11-03` | Retorna o total do dia |
+| POST | `/api/ia/estimar` | Retorna estimativa de calorias |
 
 Exemplo do corpo do POST:
 
 ```json
 {"nome":"Almoço","calorias":550,"data":"2026-11-03"}
 ```
+
+Exemplo do corpo da estimativa: `{"descricao":"150g de arroz, 100g de feijão e 150g de frango"}`. O retorno é `{"calorias":580}` (número ilustrativo; o valor real depende da IA).
 
 O banco é criado automaticamente na pasta `backend/dados` quando a API inicia.
 
