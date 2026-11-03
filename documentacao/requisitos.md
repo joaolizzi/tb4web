@@ -7,6 +7,8 @@
 - **RF04:** mostrar o total de calorias do dia.
 - **RF05:** sugerir opcionalmente as calorias de uma refeição a partir de sua descrição por IA, sem cadastrar automaticamente.
 - **RF06:** mostrar o histórico por data e a média de calorias dos dias com refeições registradas.
+- **RF07:** registrar quantidades de água em ml, listar os registros por dia e mostrar o total diário.
+- **RF08:** permitir excluir um registro de água.
 
 ## Não funcionais
 - **RNF01:** backend em Java com Spring Boot e API REST.
@@ -18,4 +20,4 @@
 - **RNF07:** a chave do Gemini deve ficar somente no backend, em variável de ambiente.
 
 ## Fora do escopo
-Cadastro de usuários, login, edição de refeições, metas, água, relatórios complexos e outras funções de IA.
+Cadastro de usuários, login, edição de refeições, metas nutricionais, relatórios complexos e outras funções de IA.
