@@ -47,15 +47,15 @@ mvn spring-boot:run
 
 Execute esses comandos dentro da pasta `backend`. Não cole sua chave em arquivos versionados nem a envie a terceiros.
 
-O modelo padrão é `gemini-3.5-flash-lite`. Se sua chave não tiver acesso a ele, você pode escolher outro modelo disponível para seu projeto no AI Studio:
+O modelo padrão é `gemini-3.8-flash`, escolhido para melhorar a estimativa. Se sua chave não tiver acesso a ele ou a cota for insuficiente, você pode usar o modelo mais leve:
 
 ```powershell
-$env:GEMINI_MODEL="gemini-3.5-flash"
+$env:GEMINI_MODEL="gemini-3.5-flash-lite"
 ```
 
 Sem a chave, o cadastro manual continua funcionando normalmente. A IA gera apenas uma estimativa, não salva refeições automaticamente e pode errar; confirme o valor antes de adicionar. No painel de IA, clique em **Usar no cadastro** para preencher os campos do formulário manual.
 
-Para experimentar um modelo mais capaz, se sua chave tiver acesso a ele, configure `$env:GEMINI_MODEL="gemini-3.8-flash"` **antes de iniciar o backend**. Confira cota e preço no Google AI Studio. O modelo mais leve continua sendo o padrão.
+Se você já havia configurado `GEMINI_MODEL` no terminal para o modelo antigo, mude essa variável para `gemini-3.8-flash` e reinicie o backend. Confira o acesso, a cota e eventuais cobranças do seu projeto no Google AI Studio.
 
 ## Endpoints
 
