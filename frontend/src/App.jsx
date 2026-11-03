@@ -43,8 +43,8 @@ export default function App() {
         body: JSON.stringify({ descricao: nome.trim() })
       })
       if (!resposta.ok) {
-        if (resposta.status === 503) throw new Error('Configure a chave do Gemini no backend para usar a IA.')
-        throw new Error('A estimativa não funcionou. Tente novamente ou informe as calorias manualmente.')
+        const detalhes = await resposta.json().catch(() => ({}))
+        throw new Error(detalhes.erro || 'A estimativa não funcionou. Informe as calorias manualmente.')
       }
       const dados = await resposta.json()
       setCalorias(String(dados.calorias))
