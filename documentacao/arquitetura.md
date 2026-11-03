@@ -26,9 +26,9 @@ tb4web/
 ```
 
 ## Camadas
-- **Model:** entidade Refeicao, com id, nome, calorias e data.
+- **Model:** entidades Refeicao (nome, calorias e data) e ConsumoAgua (quantidade em ml e data).
 - **Repository:** acesso ao banco de dados com Spring Data JPA.
-- **Service:** cadastro, consulta, exclusão, soma de calorias e agrupamento do histórico por data.
+- **Service:** cadastro, consulta, exclusão, soma de calorias, histórico alimentar e total diário de água.
 - **Controller:** endpoints REST chamados pelo React.
 - **DTO:** valida os dados recebidos no cadastro.
 - **EstimativaService:** consulta a API Gemini através de uma requisição HTTP, usando a chave de ambiente do backend.
@@ -42,6 +42,10 @@ tb4web/
 | GET | /api/refeicoes/total?data=AAAA-MM-DD | Somar calorias |
 | GET | /api/refeicoes/historico | Histórico de dias e média de calorias |
 | POST | /api/ia/estimar | Estimar calorias a partir de uma descrição |
+| GET | /api/agua?data=AAAA-MM-DD | Listar registros de água do dia |
+| POST | /api/agua | Registrar quantidade de água em ml |
+| DELETE | /api/agua/{id} | Excluir registro de água |
+| GET | /api/agua/total?data=AAAA-MM-DD | Somar água consumida no dia |
 
 O banco H2 é salvo em arquivo na pasta `backend/dados`. O Vite encaminha as requisições `/api` para a porta 8080 durante o desenvolvimento.
 
