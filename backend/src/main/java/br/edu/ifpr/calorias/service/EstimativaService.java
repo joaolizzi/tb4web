@@ -26,7 +26,7 @@ public class EstimativaService {
 
     public EstimativaService(ObjectMapper json,
         @Value("${GEMINI_API_KEY:}") String chave,
-        @Value("${GEMINI_MODEL:gemini-3.7-flash}") String modelo) {
+        @Value("${GEMINI_MODEL:gemini-3.5-flash-lite}") String modelo) {
         this.json = json;
         this.chave = chave;
         this.modelo = modelo;
@@ -61,9 +61,30 @@ public class EstimativaService {
             HttpResponse<String> resposta = cliente.send(requisicao,
                 HttpResponse.BodyHandlers.ofString());
 
-            if (resposta.statusCode() != 200) {
+            int codigo = resposta.statusCode();
+            if (codigo == 400) {
                 throw new ResponseStatusException(HttpStatus.BAD_GATEWAY,
-                    "O serviço de IA não respondeu. Confira a chave, o modelo e os limites da API.");
+                    "O Gemini rejeitou a solicitação. Confira o modelo configurado.");
+            }
+            if (codigo == 401 || codigo == 403) {
+                throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,
+                    "A chave do Gemini é inválida ou não tem permissão. Confira GEMINI_API_KEY.");
+            }
+            if (codigo == 404) {
+                throw new ResponseStatusException(HttpStatus.BAD_GATEWAY,
+                    "O modelo do Gemini não está disponível para esta chave. Confira GEMINI_MODEL.");
+            }
+            if (codigo == 429) {
+                throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS,
+                    "O limite de uso do Gemini foi atingido. Tente mais tarde ou verifique a cota no AI Studio.");
+            }
+            if (codigo >= 500) {
+                throw new ResponseStatusException(HttpStatus.BAD_GATEWAY,
+                    "O Gemini está temporariamente indisponível. Tente novamente em alguns minutos.");
+            }
+            if (codigo != 200) {
+                throw new ResponseStatusException(HttpStatus.BAD_GATEWAY,
+                    "Falha ao consultar o Gemini (HTTP " + codigo + ").");
             }
 
             JsonNode partes = json.readTree(resposta.body())
