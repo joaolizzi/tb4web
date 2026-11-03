@@ -179,6 +179,6 @@ footer span{padding:0 7px;color:#34d399}
   .agua-controles{grid-template-columns:1fr;gap:19px}
   .agua-form>div{flex-wrap:wrap}
   .agua-form input{flex:1 1 100%}
-  .agua-form>div>span{position:absolute;margin-left:calc(100% - 54px);margin-top:-48px}
+  .agua-form>div>span{position:static;margin:0}
   .agua-form button{width:100%}
 }
