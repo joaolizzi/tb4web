@@ -105,7 +105,7 @@ A estimativa é aproximada e depende da descrição enviada. A descrição só �
 **Pré-condições:** uma data está selecionada na tela (por padrão, a data de hoje).
 
 **Fluxo principal**
-1. A pessoa escolhe um atalho (**+ 250 ml** ou **+ 500 ml**) ou digita outra quantidade em ml e clica em **Registrar**.
+1. A pessoa escolhe um atalho (**+ 250 ml**, **+ 500 ml**, **+ 600 ml** ou **+ 1000 ml**) ou digita outra quantidade em ml e clica em **Registrar**.
 2. O sistema valida a quantidade e salva o registro na data selecionada.
 3. O sistema mostra a mensagem de sucesso e atualiza a lista, o total de água do dia e o progresso em relação à meta visual de 3.000 ml.
 
