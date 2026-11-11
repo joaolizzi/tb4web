@@ -14,7 +14,7 @@ Prioridades: **Alta** (essencial para o funcionamento do sistema), **Média** (i
 | RF06 | O sistema deve calcular a média diária de calorias considerando somente os dias com refeições registradas. | Média |
 | RF07 | O sistema deve estimar, opcionalmente, as calorias de uma refeição a partir da sua descrição, usando IA (Gemini), sem cadastrar a refeição automaticamente. | Média |
 | RF08 | O sistema deve permitir preencher o formulário de cadastro com a estimativa da IA, para que a pessoa confira e corrija o valor antes de salvar. | Média |
-| RF09 | O sistema deve permitir registrar quantidades de água em ml, com atalhos de 250 ml e 500 ml e campo para outra quantidade. | Média |
+| RF09 | O sistema deve permitir registrar quantidades de água em ml, com atalhos de 250 ml, 500 ml, 600 ml e 1000 ml e campo para outra quantidade. | Média |
 | RF10 | O sistema deve listar os registros de água da data escolhida e mostrar o total do dia em ml, com o progresso em relação à meta visual de 3.000 ml. | Média |
 | RF11 | O sistema deve permitir excluir um registro de água. | Média |
 
