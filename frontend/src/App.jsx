@@ -378,6 +378,8 @@ export default function App() {
                 <span>Adicionar rapidamente</span>
                 <button type="button" disabled={salvandoAgua} onClick={() => registrarAgua(250)}>＋ 250 ml</button>
                 <button type="button" disabled={salvandoAgua} onClick={() => registrarAgua(500)}>＋ 500 ml</button>
+                <button type="button" disabled={salvandoAgua} onClick={() => registrarAgua(600)}>＋ 600 ml</button>
+                <button type="button" disabled={salvandoAgua} onClick={() => registrarAgua(1000)}>＋ 1000 ml</button>
               </div>
               <form className="agua-form" onSubmit={adicionarAgua}>
                 <label htmlFor="quantidade-agua">Outra quantidade</label>
@@ -407,11 +409,10 @@ export default function App() {
                 ))}
               </ul>
             )}
-            <p className="agua-nota">A meta de 3.000 ml é apenas uma referência inicial do aplicativo.</p>
+            <p className="agua-nota">* Meta diária recomendada: 3.000 ml</p>
           </div>
         </section>
 
-        <footer>Calorias Diárias <span>·</span> Feito para acompanhar sua alimentação de forma simples.</footer>
       </main>
     </div>
   )
