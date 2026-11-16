@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/refeicoes")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(originPatterns = {"http://localhost:*", "http://192.168.*:*", "http://10.*:*", "http://172.*:*"})
 public class RefeicaoController {
     private final RefeicaoService servico;
 
