@@ -72,7 +72,7 @@ O frontend é uma aplicação de página única criada com Vite, sem roteador ne
 
 ## Comunicação entre frontend e backend
 - O React usa `fetch` para chamar a API com caminhos relativos (`/api/...`), enviando e recebendo JSON.
-- Em desenvolvimento, o Vite encaminha as requisições `/api` para `http://localhost:8080` (`vite.config.js`), o que evita problemas de CORS. Os controllers de refeição e de água também liberam a origem `http://localhost:5173`.
+- Em desenvolvimento, o Vite encaminha as requisições /api para http://localhost:8080 (vite.config.js), o que evita problemas de CORS. Os controllers de refeição e de água também liberam as origens localhost (em qualquer porta) e as faixas de rede local (192.168.*, 10.* e 172.*), para permitir abrir o front por outro computador na mesma rede.
 - Ao carregar a tela ou mudar a data, o frontend consulta as refeições e a água da data escolhida. Depois de cadastrar ou excluir, ele recarrega as listas e o histórico.
 - A API responde com `200` (consulta), `201` (cadastro), `204` (exclusão), `400` (dados inválidos), `404` (registro inexistente) e, na estimativa por IA, `502`, `503` ou `429`, sempre com uma mensagem legível.
 
